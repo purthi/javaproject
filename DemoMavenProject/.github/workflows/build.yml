@@ -10,6 +10,7 @@ jobs:
   build:
     name: Build and analyze
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,7 +21,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
-          cache: 'maven'   # <-- This replaces the manual ~/.m2 cache step
+          cache: 'maven'
 
       - name: Cache SonarQube packages
         uses: actions/cache@v4
@@ -28,6 +29,15 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+
+      - name: Debug workspace paths
+        run: |
+          echo "PWD:" && pwd
+          echo
+          echo "Top-level:" && ls -la
+          echo
+          echo "Find all pom.xml (2 levels):"
+          find . -maxdepth 2 -type f -name "pom.xml" -print
 
       - name: Build and analyze
         env:
