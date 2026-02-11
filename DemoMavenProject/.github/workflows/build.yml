@@ -33,4 +33,11 @@ jobs:
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=purthi_javaproject
+      # run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=purthi_javaproject
+        run: mvn -B \
+  -f javaproject/DemoMavenProject/pom.xml \
+  clean verify \
+  org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+  -Dsonar.projectKey=purthi_javaproject \
+  -Dsonar.organization=purthi \
+  -Dsonar.host.url=https://sonarcloud.io
