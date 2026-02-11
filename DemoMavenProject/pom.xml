@@ -5,6 +5,9 @@
   <artifactId>DemoMavenProject</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
+  <properties>
+  <sonar.organization>purthi</sonar.organization>
+  </properties>
   <name>DemoMavenProject</name>
   <url>http://maven.apache.org</url>
   <dependencies>
